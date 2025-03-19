@@ -1,30 +1,7 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
+stage('Cleanup') {
     steps {
-        sh 'chmod +x hello.cpp'
-        sh 'g++ hello.cpp -o output'
-    }
-}
-
-        stage('Test') {
-            steps {
-                sh './output'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deployment Successful'
-            }
-        }
-    }
-
-    post {
-        failure {
-            echo 'Pipeline failed'
-        }
+        sh 'rm -rf *'  // Delete all old files
+        sh 'git reset --hard'  // Reset repository
+        sh 'git pull origin main'  // Pull latest files
     }
 }
