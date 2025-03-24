@@ -1,7 +1,0 @@
-stage('Cleanup') {
-    steps {
-        sh 'rm -rf *'  // Delete all old files
-        sh 'git reset --hard'  // Reset repository
-        sh 'git pull origin main'  // Pull latest files
-    }
-}
